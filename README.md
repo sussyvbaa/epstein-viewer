@@ -1,1 +1,61 @@
-Placeholder
+# Epstein Files Viewer
+
+A web-based viewer for the DOJ Epstein Files Disclosure released December 19, 2025, pursuant to the **Epstein Files Transparency Act (H.R. 4405)**.
+
+## Overview
+
+This viewer provides organized access to the 5 official DOJ disclosure datasets containing 4,055+ documents related to the Jeffrey Epstein investigation.
+
+## Features
+
+- **Dataset Browser**: View all 5 DOJ disclosure datasets with file counts, sizes, and document ID ranges
+- **Document ID Lookup**: Search for any EFTA document ID to find which dataset contains it
+- **Filter & Search**: Filter by dataset or search across all content
+- **Quick Access Links**: Direct links to official DOJ pages and additional resources
+- **Document Categories**: Overview of document types including court records, photos, flight logs, videos, and transcripts
+- **Responsive Design**: Works on desktop and mobile devices
+
+## Datasets
+
+| Dataset | Files | Size | Document ID Range |
+|---------|-------|------|-------------------|
+| Dataset 1 | 3,142 | 1.26 GB | EFTA00000001 - EFTA00003158 |
+| Dataset 2 | 574 | 629 MB | EFTA00003159 - EFTA00003857 |
+| Dataset 3 | 67 | 598 MB | EFTA00003858 - EFTA00005586 |
+| Dataset 4 | 152 | 356 MB | EFTA00005705 - EFTA00008320 |
+| Dataset 5 | 120 | 61 MB | EFTA00008409 - EFTA00008528 |
+
+## Usage
+
+Simply open `index.html` in a web browser. No build process or server required.
+
+### Keyboard Shortcuts
+
+- Press `/` to focus the search input
+- Press `Escape` to clear search and reset filters
+
+## Data Sources
+
+- [DOJ Epstein Library](https://www.justice.gov/epstein) - Official DOJ homepage
+- [DOJ Disclosures](https://www.justice.gov/epstein/doj-disclosures) - All disclosure categories
+- [House Oversight Committee](https://oversight.house.gov/release/oversight-committee-releases-epstein-records-provided-by-the-department-of-justice/) - 33,000+ pages
+- [FBI Vault](https://vault.fbi.gov/jeffrey-epstein) - FBI records
+- [Internet Archive](https://archive.org/details/combined-all-epstein-files) - Complete searchable archive
+- [H.R. 4405](https://www.congress.gov/bill/119th-congress/house-bill/4405/text) - Epstein Files Transparency Act
+
+## Document Categories
+
+- **Court Records**: Legal filings from 50+ cases
+- **Photographs**: Evidence photos from properties and investigations
+- **Flight Logs**: Travel records from Virgin Islands to Palm Beach
+- **Video Evidence**: Including prison surveillance footage
+- **FOIA Releases**: Freedom of Information Act materials
+- **Interview Transcripts**: Including Maxwell interview with DAG Todd Blanche
+
+## Disclaimer
+
+This is an independent viewer for publicly released DOJ documents. All files are hosted on official government websites. This site is not affiliated with the U.S. Department of Justice.
+
+## License
+
+This viewer is open source. The underlying documents are public records released by the U.S. Department of Justice.
