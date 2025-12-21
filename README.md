@@ -4,12 +4,14 @@ A web-based viewer for the DOJ Epstein Files Disclosure released December 19, 20
 
 ## Overview
 
-This viewer provides organized access to the 5 official DOJ disclosure datasets containing 4,055+ documents related to the Jeffrey Epstein investigation.
+This viewer provides organized access to the 7 official DOJ disclosure datasets containing 4,500+ documents related to the Jeffrey Epstein investigation. View PDFs and documents directly in your browser.
 
 ## Features
 
-- **Dataset Browser**: View all 5 DOJ disclosure datasets with file counts, sizes, and document ID ranges
+- **Embedded Document Viewer**: View PDFs, images, and documents directly in your browser
+- **Dataset Browser**: Browse all 7 DOJ disclosure datasets with file counts, sizes, and document ID ranges
 - **Document ID Lookup**: Search for any EFTA document ID to find which dataset contains it
+- **Navigation Controls**: Use arrow keys or buttons to navigate between documents
 - **Filter & Search**: Filter by dataset or search across all content
 - **Quick Access Links**: Direct links to official DOJ pages and additional resources
 - **Document Categories**: Overview of document types including court records, photos, flight logs, videos, and transcripts
@@ -24,15 +26,29 @@ This viewer provides organized access to the 5 official DOJ disclosure datasets 
 | Dataset 3 | 67 | 598 MB | EFTA00003858 - EFTA00005586 |
 | Dataset 4 | 152 | 356 MB | EFTA00005705 - EFTA00008320 |
 | Dataset 5 | 120 | 61 MB | EFTA00008409 - EFTA00008528 |
+| Dataset 6 | ~150 | ~200 MB | EFTA00008529 - EFTA00009200 |
+| Dataset 7 | ~200 | ~250 MB | EFTA00009201 - EFTA00009700 |
 
 ## Usage
 
 Simply open `index.html` in a web browser. No build process or server required.
 
+### Viewing Documents
+
+1. Enter a document ID in the "View Documents" section (e.g., `EFTA00001234` or just `1234`)
+2. Click "View Document" or press Enter
+3. The document will load in a full-screen viewer
+4. Use arrow keys (← →) or navigation buttons to browse adjacent documents
+5. Press Escape or click X to close the viewer
+
 ### Keyboard Shortcuts
 
-- Press `/` to focus the search input
-- Press `Escape` to clear search and reset filters
+| Key | Action |
+|-----|--------|
+| `/` | Focus search input |
+| `Escape` | Close viewer / Clear search |
+| `←` | Previous document (in viewer) |
+| `→` | Next document (in viewer) |
 
 ## Data Sources
 
@@ -51,6 +67,12 @@ Simply open `index.html` in a web browser. No build process or server required.
 - **Video Evidence**: Including prison surveillance footage
 - **FOIA Releases**: Freedom of Information Act materials
 - **Interview Transcripts**: Including Maxwell interview with DAG Todd Blanche
+
+## Technical Notes
+
+- Documents are loaded directly from the official DOJ servers
+- Some documents may not load due to DOJ server restrictions on embedded content
+- If a document fails to load, use the "Open External" link to view it directly on the DOJ website
 
 ## Disclaimer
 
