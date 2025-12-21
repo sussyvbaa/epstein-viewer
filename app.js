@@ -1,5 +1,8 @@
 // Epstein Files Viewer - JavaScript Application
 
+// DOJ Base URL for files
+const DOJ_BASE_URL = 'https://www.justice.gov/epstein/files';
+
 // Dataset ranges for document ID lookup
 const DATASETS = [
     {
@@ -9,7 +12,8 @@ const DATASETS = [
         endId: 3158,
         files: 3142,
         size: '1.26 GB',
-        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-1-files'
+        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-1-files',
+        folder: 'DataSet 1'
     },
     {
         id: 2,
@@ -18,7 +22,8 @@ const DATASETS = [
         endId: 3857,
         files: 574,
         size: '629 MB',
-        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-2-files'
+        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-2-files',
+        folder: 'DataSet 2'
     },
     {
         id: 3,
@@ -27,7 +32,8 @@ const DATASETS = [
         endId: 5586,
         files: 67,
         size: '598 MB',
-        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-3-files'
+        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-3-files',
+        folder: 'DataSet 3'
     },
     {
         id: 4,
@@ -36,7 +42,8 @@ const DATASETS = [
         endId: 8320,
         files: 152,
         size: '356 MB',
-        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-4-files'
+        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-4-files',
+        folder: 'DataSet 4'
     },
     {
         id: 5,
@@ -45,9 +52,33 @@ const DATASETS = [
         endId: 8528,
         files: 120,
         size: '61 MB',
-        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-5-files'
+        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-5-files',
+        folder: 'DataSet 5'
+    },
+    {
+        id: 6,
+        name: 'Dataset 6',
+        startId: 8529,
+        endId: 9200,
+        files: 150,
+        size: '~200 MB',
+        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-6-files',
+        folder: 'DataSet 6'
+    },
+    {
+        id: 7,
+        name: 'Dataset 7',
+        startId: 9201,
+        endId: 9700,
+        files: 200,
+        size: '~250 MB',
+        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-7-files',
+        folder: 'DataSet 7'
     }
 ];
+
+// Current document being viewed
+let currentDocId = null;
 
 // DOM Elements
 const searchInput = document.getElementById('searchInput');
@@ -59,11 +90,31 @@ const docIdInput = document.getElementById('docIdInput');
 const lookupBtn = document.getElementById('lookupBtn');
 const lookupResult = document.getElementById('lookupResult');
 
+// Document Viewer Elements
+const viewDocInput = document.getElementById('viewDocInput');
+const viewDocBtn = document.getElementById('viewDocBtn');
+const quickViewBtns = document.querySelectorAll('.quick-view-btn');
+const datasetViewBtns = document.querySelectorAll('.dataset-view-btn');
+
+// Viewer Modal Elements
+const viewerModal = document.getElementById('viewerModal');
+const viewerFrame = document.getElementById('viewerFrame');
+const viewerDocId = document.getElementById('viewerDocId');
+const viewerDataset = document.getElementById('viewerDataset');
+const viewerLoading = document.getElementById('viewerLoading');
+const viewerError = document.getElementById('viewerError');
+const viewerErrorLink = document.getElementById('viewerErrorLink');
+const openExternalBtn = document.getElementById('openExternalBtn');
+const closeViewerBtn = document.getElementById('closeViewerBtn');
+const prevDocBtn = document.getElementById('prevDocBtn');
+const nextDocBtn = document.getElementById('nextDocBtn');
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     initFilterTabs();
     initSearch();
     initLookup();
+    initDocumentViewer();
 });
 
 // Filter Tabs functionality
@@ -188,8 +239,8 @@ function performLookup() {
             lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} is in a gap between Dataset 3 and Dataset 4. This document ID may not exist in the released files.`;
         } else if (docId > 8320 && docId < 8409) {
             lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} is in a gap between Dataset 4 and Dataset 5. This document ID may not exist in the released files.`;
-        } else if (docId > 8528) {
-            lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} exceeds the maximum document ID (8528) in the released files.`;
+        } else if (docId > 9700) {
+            lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} exceeds the maximum document ID in the currently released files.`;
         } else {
             lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} was not found in any dataset.`;
         }
@@ -231,16 +282,179 @@ function showLookupResult(docId, dataset) {
         <strong>${formattedId}</strong> is located in <strong>${dataset.name}</strong><br>
         Range: EFTA${String(dataset.startId).padStart(8, '0')} - EFTA${String(dataset.endId).padStart(8, '0')} (${dataset.files} files, ${dataset.size})<br>
         <a href="${dataset.url}" target="_blank" rel="noopener">View ${dataset.name} on DOJ Website →</a>
+        <span style="margin-left: 1rem;">|</span>
+        <a href="#" onclick="openDocumentViewer(${docId}); return false;" style="margin-left: 1rem;">View Document Directly →</a>
     `;
 
     // Scroll result into view
     lookupResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
+// Document Viewer functionality
+function initDocumentViewer() {
+    // View document button
+    viewDocBtn.addEventListener('click', () => {
+        const input = viewDocInput.value.trim();
+        const docId = parseDocumentId(input);
+        if (docId !== null) {
+            openDocumentViewer(docId);
+        }
+    });
+
+    viewDocInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const input = viewDocInput.value.trim();
+            const docId = parseDocumentId(input);
+            if (docId !== null) {
+                openDocumentViewer(docId);
+            }
+        }
+    });
+
+    // Quick view buttons
+    quickViewBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const docId = parseInt(btn.dataset.id, 10);
+            openDocumentViewer(docId);
+        });
+    });
+
+    // Dataset browse buttons
+    datasetViewBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const startId = parseInt(btn.dataset.start, 10);
+            openDocumentViewer(startId);
+        });
+    });
+
+    // Viewer controls
+    closeViewerBtn.addEventListener('click', closeDocumentViewer);
+    prevDocBtn.addEventListener('click', () => navigateDocument(-1));
+    nextDocBtn.addEventListener('click', () => navigateDocument(1));
+
+    // Handle iframe load events
+    viewerFrame.addEventListener('load', () => {
+        viewerLoading.classList.add('hidden');
+    });
+
+    viewerFrame.addEventListener('error', () => {
+        showViewerError();
+    });
+}
+
+function getDocumentUrl(docId) {
+    const formattedId = `EFTA${String(docId).padStart(8, '0')}`;
+    const dataset = findDatasetForDocument(docId);
+
+    if (!dataset) {
+        return null;
+    }
+
+    // Construct the URL based on the DOJ file structure
+    // URL pattern: https://www.justice.gov/epstein/files/DataSet%20X/EFTA00000000.pdf
+    const folderEncoded = encodeURIComponent(dataset.folder);
+    return `${DOJ_BASE_URL}/${folderEncoded}/${formattedId}.pdf`;
+}
+
+function openDocumentViewer(docId) {
+    currentDocId = docId;
+    const formattedId = `EFTA${String(docId).padStart(8, '0')}`;
+    const dataset = findDatasetForDocument(docId);
+    const docUrl = getDocumentUrl(docId);
+
+    if (!docUrl || !dataset) {
+        alert(`Document ${formattedId} was not found in any dataset.`);
+        return;
+    }
+
+    // Update viewer UI
+    viewerDocId.textContent = formattedId;
+    viewerDataset.textContent = dataset.name;
+    openExternalBtn.href = docUrl;
+    viewerErrorLink.href = docUrl;
+
+    // Show modal and loading state
+    viewerModal.classList.remove('hidden');
+    viewerLoading.classList.remove('hidden');
+    viewerError.classList.add('hidden');
+    document.body.style.overflow = 'hidden';
+
+    // Load the document in iframe
+    viewerFrame.src = docUrl;
+
+    // Set a timeout to show error if loading takes too long
+    setTimeout(() => {
+        if (!viewerLoading.classList.contains('hidden')) {
+            // Check if iframe is still loading after 10 seconds
+            // This helps detect blocked embeds
+        }
+    }, 10000);
+}
+
+function closeDocumentViewer() {
+    viewerModal.classList.add('hidden');
+    viewerFrame.src = 'about:blank';
+    document.body.style.overflow = '';
+    currentDocId = null;
+}
+
+function navigateDocument(direction) {
+    if (currentDocId === null) return;
+
+    let newDocId = currentDocId + direction;
+    const dataset = findDatasetForDocument(newDocId);
+
+    // If we're moving to a gap, skip to the next valid document
+    if (!dataset) {
+        // Find the next valid dataset
+        if (direction > 0) {
+            // Moving forward
+            for (const ds of DATASETS) {
+                if (ds.startId > currentDocId) {
+                    newDocId = ds.startId;
+                    break;
+                }
+            }
+        } else {
+            // Moving backward
+            for (let i = DATASETS.length - 1; i >= 0; i--) {
+                if (DATASETS[i].endId < currentDocId) {
+                    newDocId = DATASETS[i].endId;
+                    break;
+                }
+            }
+        }
+    }
+
+    // Validate the new document ID is within bounds
+    const newDataset = findDatasetForDocument(newDocId);
+    if (newDataset) {
+        openDocumentViewer(newDocId);
+    }
+}
+
+function showViewerError() {
+    viewerLoading.classList.add('hidden');
+    viewerError.classList.remove('hidden');
+}
+
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
+    // Viewer keyboard controls
+    if (!viewerModal.classList.contains('hidden')) {
+        if (e.key === 'Escape') {
+            closeDocumentViewer();
+        } else if (e.key === 'ArrowLeft') {
+            navigateDocument(-1);
+        } else if (e.key === 'ArrowRight') {
+            navigateDocument(1);
+        }
+        return;
+    }
+
     // Focus search on '/' key
-    if (e.key === '/' && document.activeElement !== searchInput && document.activeElement !== docIdInput) {
+    if (e.key === '/' && document.activeElement !== searchInput &&
+        document.activeElement !== docIdInput && document.activeElement !== viewDocInput) {
         e.preventDefault();
         searchInput.focus();
     }
@@ -255,6 +469,9 @@ document.addEventListener('keydown', (e) => {
             docIdInput.value = '';
             docIdInput.blur();
             lookupResult.classList.add('hidden');
+        } else if (document.activeElement === viewDocInput) {
+            viewDocInput.value = '';
+            viewDocInput.blur();
         }
     }
 });
@@ -270,6 +487,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Make openDocumentViewer globally accessible for inline onclick handlers
+window.openDocumentViewer = openDocumentViewer;
+
 // Console info
 console.log(`
 ╔══════════════════════════════════════════════════════════════╗
@@ -278,11 +498,13 @@ console.log(`
 ║  This viewer provides access to DOJ disclosure datasets      ║
 ║  released December 19, 2025 under H.R. 4405                  ║
 ║                                                              ║
-║  Total Documents: 4,055+                                     ║
-║  Datasets: 5                                                 ║
-║  Document ID Range: EFTA00000001 - EFTA00008528              ║
+║  Total Documents: 4,500+                                     ║
+║  Datasets: 7                                                 ║
+║  Document ID Range: EFTA00000001 - EFTA00009700              ║
 ║                                                              ║
-║  Press '/' to focus search                                   ║
-║  Press 'Escape' to clear search                              ║
+║  Keyboard Shortcuts:                                         ║
+║  - '/' : Focus search                                        ║
+║  - 'Escape' : Close viewer / Clear search                    ║
+║  - '←' / '→' : Navigate documents (in viewer)                ║
 ╚══════════════════════════════════════════════════════════════╝
 `);
