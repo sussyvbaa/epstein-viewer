@@ -74,6 +74,16 @@ const DATASETS = [
         size: '~250 MB',
         url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-7-files',
         folder: 'DataSet 7'
+    },
+    {
+        id: 8,
+        name: 'Dataset 8',
+        startId: 9701,
+        endId: 20700,
+        files: 11000,
+        size: '~5 GB',
+        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-8-files',
+        folder: 'DataSet 8'
     }
 ];
 
@@ -239,7 +249,7 @@ function performLookup() {
             lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} is in a gap between Dataset 3 and Dataset 4. This document ID may not exist in the released files.`;
         } else if (docId > 8320 && docId < 8409) {
             lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} is in a gap between Dataset 4 and Dataset 5. This document ID may not exist in the released files.`;
-        } else if (docId > 9700) {
+        } else if (docId > 20700) {
             lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} exceeds the maximum document ID in the currently released files.`;
         } else {
             lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} was not found in any dataset.`;
@@ -490,6 +500,77 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Make openDocumentViewer globally accessible for inline onclick handlers
 window.openDocumentViewer = openDocumentViewer;
 
+// Full Text Search Functionality
+const fulltextSearchInput = document.getElementById('fulltextSearchInput');
+const fulltextSearchBtn = document.getElementById('fulltextSearchBtn');
+const quickSearchBtns = document.querySelectorAll('.quick-search-btn');
+const viewerSearchInput = document.getElementById('viewerSearchInput');
+
+// Search URLs
+const SEARCH_URLS = {
+    archive: (query) => `https://archive.org/search?query=${encodeURIComponent(query + ' epstein files')}&and[]=mediatype%3A%22texts%22`,
+    google: (query) => `https://www.google.com/search?q=site%3Ajustice.gov%2Fepstein+${encodeURIComponent(query)}`
+};
+
+function getSelectedSearchSource() {
+    const selected = document.querySelector('input[name="searchSource"]:checked');
+    return selected ? selected.value : 'archive';
+}
+
+function performFulltextSearch(query) {
+    if (!query || !query.trim()) return;
+
+    const source = getSelectedSearchSource();
+    const searchUrl = SEARCH_URLS[source](query.trim());
+    window.open(searchUrl, '_blank', 'noopener,noreferrer');
+}
+
+// Full-text search button click
+if (fulltextSearchBtn) {
+    fulltextSearchBtn.addEventListener('click', () => {
+        performFulltextSearch(fulltextSearchInput.value);
+    });
+}
+
+// Full-text search input enter key
+if (fulltextSearchInput) {
+    fulltextSearchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performFulltextSearch(fulltextSearchInput.value);
+        }
+    });
+}
+
+// Quick search buttons
+quickSearchBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const query = btn.dataset.query;
+        if (query) {
+            fulltextSearchInput.value = query;
+            performFulltextSearch(query);
+        }
+    });
+});
+
+// Viewer search - show tip about using Ctrl+F
+if (viewerSearchInput) {
+    viewerSearchInput.addEventListener('focus', () => {
+        // Show tip that browser's Ctrl+F works for PDF search
+        viewerSearchInput.placeholder = 'Use Ctrl+F or Cmd+F for PDF search';
+    });
+
+    viewerSearchInput.addEventListener('blur', () => {
+        viewerSearchInput.placeholder = 'Search in document... (Ctrl+F)';
+    });
+
+    viewerSearchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            // Alert user to use browser's find feature
+            alert('Tip: Use your browser\'s Find feature (Ctrl+F or Cmd+F) to search within the PDF document.\n\nFor searching across ALL documents, close this viewer and use the Full Text Search section on the main page.');
+        }
+    });
+}
+
 // Console info
 console.log(`
 ╔══════════════════════════════════════════════════════════════╗
@@ -498,9 +579,9 @@ console.log(`
 ║  This viewer provides access to DOJ disclosure datasets      ║
 ║  released December 19, 2025 under H.R. 4405                  ║
 ║                                                              ║
-║  Total Documents: 4,500+                                     ║
-║  Datasets: 7                                                 ║
-║  Document ID Range: EFTA00000001 - EFTA00009700              ║
+║  Total Documents: 15,500+                                    ║
+║  Datasets: 8                                                 ║
+║  Document ID Range: EFTA00000001 - EFTA00020700              ║
 ║                                                              ║
 ║  Keyboard Shortcuts:                                         ║
 ║  - '/' : Focus search                                        ║
