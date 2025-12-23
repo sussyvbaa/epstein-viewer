@@ -352,7 +352,13 @@ function initDocumentViewer() {
     });
 }
 
-function getDocumentUrl(docId) {
+// Supported file extensions (order matters - most common first)
+const FILE_EXTENSIONS = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'mp4', 'mp3', 'wav', 'xlsx', 'docx', 'txt'];
+
+// Current extension being tried
+let currentExtensionIndex = 0;
+
+function getDocumentUrl(docId, extension = 'pdf') {
     const formattedId = `EFTA${String(docId).padStart(8, '0')}`;
     const dataset = findDatasetForDocument(docId);
 
@@ -363,14 +369,22 @@ function getDocumentUrl(docId) {
     // Construct the URL based on the DOJ file structure
     // URL pattern: https://www.justice.gov/epstein/files/DataSet%20X/EFTA00000000.pdf
     const folderEncoded = encodeURIComponent(dataset.folder);
-    return `${DOJ_BASE_URL}/${folderEncoded}/${formattedId}.pdf`;
+    return `${DOJ_BASE_URL}/${folderEncoded}/${formattedId}.${extension}`;
 }
 
-function openDocumentViewer(docId) {
+function getDatasetPageUrl(docId) {
+    const dataset = findDatasetForDocument(docId);
+    if (!dataset) return null;
+    return dataset.url;
+}
+
+function openDocumentViewer(docId, extensionIndex = 0) {
     currentDocId = docId;
+    currentExtensionIndex = extensionIndex;
     const formattedId = `EFTA${String(docId).padStart(8, '0')}`;
     const dataset = findDatasetForDocument(docId);
-    const docUrl = getDocumentUrl(docId);
+    const extension = FILE_EXTENSIONS[extensionIndex] || 'pdf';
+    const docUrl = getDocumentUrl(docId, extension);
 
     if (!docUrl || !dataset) {
         alert(`Document ${formattedId} was not found in any dataset.`);
@@ -381,7 +395,7 @@ function openDocumentViewer(docId) {
     viewerDocId.textContent = formattedId;
     viewerDataset.textContent = dataset.name;
     openExternalBtn.href = docUrl;
-    viewerErrorLink.href = docUrl;
+    viewerErrorLink.href = dataset.url; // Link to dataset page instead of direct file
 
     // Show modal and loading state
     viewerModal.classList.remove('hidden');
@@ -392,13 +406,38 @@ function openDocumentViewer(docId) {
     // Load the document in iframe
     viewerFrame.src = docUrl;
 
-    // Set a timeout to show error if loading takes too long
+    // Set a timeout to try next extension if loading fails
     setTimeout(() => {
         if (!viewerLoading.classList.contains('hidden')) {
-            // Check if iframe is still loading after 10 seconds
-            // This helps detect blocked embeds
+            // Still loading after 8 seconds, might be blocked or wrong extension
+            tryNextExtension();
         }
-    }, 10000);
+    }, 8000);
+}
+
+function tryNextExtension() {
+    if (currentDocId === null) return;
+
+    currentExtensionIndex++;
+    if (currentExtensionIndex < FILE_EXTENSIONS.length) {
+        const extension = FILE_EXTENSIONS[currentExtensionIndex];
+        const docUrl = getDocumentUrl(currentDocId, extension);
+
+        if (docUrl) {
+            viewerFrame.src = docUrl;
+            openExternalBtn.href = docUrl;
+
+            // Try again with timeout
+            setTimeout(() => {
+                if (!viewerLoading.classList.contains('hidden')) {
+                    tryNextExtension();
+                }
+            }, 3000);
+        }
+    } else {
+        // All extensions tried, show error
+        showViewerError();
+    }
 }
 
 function closeDocumentViewer() {
