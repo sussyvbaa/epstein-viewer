@@ -500,6 +500,77 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Make openDocumentViewer globally accessible for inline onclick handlers
 window.openDocumentViewer = openDocumentViewer;
 
+// Full Text Search Functionality
+const fulltextSearchInput = document.getElementById('fulltextSearchInput');
+const fulltextSearchBtn = document.getElementById('fulltextSearchBtn');
+const quickSearchBtns = document.querySelectorAll('.quick-search-btn');
+const viewerSearchInput = document.getElementById('viewerSearchInput');
+
+// Search URLs
+const SEARCH_URLS = {
+    archive: (query) => `https://archive.org/search?query=${encodeURIComponent(query + ' epstein files')}&and[]=mediatype%3A%22texts%22`,
+    google: (query) => `https://www.google.com/search?q=site%3Ajustice.gov%2Fepstein+${encodeURIComponent(query)}`
+};
+
+function getSelectedSearchSource() {
+    const selected = document.querySelector('input[name="searchSource"]:checked');
+    return selected ? selected.value : 'archive';
+}
+
+function performFulltextSearch(query) {
+    if (!query || !query.trim()) return;
+
+    const source = getSelectedSearchSource();
+    const searchUrl = SEARCH_URLS[source](query.trim());
+    window.open(searchUrl, '_blank', 'noopener,noreferrer');
+}
+
+// Full-text search button click
+if (fulltextSearchBtn) {
+    fulltextSearchBtn.addEventListener('click', () => {
+        performFulltextSearch(fulltextSearchInput.value);
+    });
+}
+
+// Full-text search input enter key
+if (fulltextSearchInput) {
+    fulltextSearchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performFulltextSearch(fulltextSearchInput.value);
+        }
+    });
+}
+
+// Quick search buttons
+quickSearchBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const query = btn.dataset.query;
+        if (query) {
+            fulltextSearchInput.value = query;
+            performFulltextSearch(query);
+        }
+    });
+});
+
+// Viewer search - show tip about using Ctrl+F
+if (viewerSearchInput) {
+    viewerSearchInput.addEventListener('focus', () => {
+        // Show tip that browser's Ctrl+F works for PDF search
+        viewerSearchInput.placeholder = 'Use Ctrl+F or Cmd+F for PDF search';
+    });
+
+    viewerSearchInput.addEventListener('blur', () => {
+        viewerSearchInput.placeholder = 'Search in document... (Ctrl+F)';
+    });
+
+    viewerSearchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            // Alert user to use browser's find feature
+            alert('Tip: Use your browser\'s Find feature (Ctrl+F or Cmd+F) to search within the PDF document.\n\nFor searching across ALL documents, close this viewer and use the Full Text Search section on the main page.');
+        }
+    });
+}
+
 // Console info
 console.log(`
 ╔══════════════════════════════════════════════════════════════╗

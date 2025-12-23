@@ -33,6 +33,28 @@
                 <span id="viewerDocId">EFTA00000000</span>
                 <span id="viewerDataset" class="viewer-dataset-badge">Dataset 1</span>
             </div>
+            <div class="viewer-search">
+                <div class="viewer-search-input-wrapper">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="viewerSearchInput" class="viewer-search-input" placeholder="Search in document... (Ctrl+F)">
+                </div>
+                <div class="viewer-search-controls">
+                    <button id="viewerSearchPrev" class="viewer-search-nav" title="Previous match">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="18 15 12 9 6 15"></polyline>
+                        </svg>
+                    </button>
+                    <span id="viewerSearchCount" class="viewer-search-count"></span>
+                    <button id="viewerSearchNext" class="viewer-search-nav" title="Next match">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
             <div class="viewer-controls">
                 <button id="prevDocBtn" class="viewer-nav-btn" title="Previous Document (←)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -138,6 +160,112 @@
                     <button class="quick-view-btn" data-id="5000">EFTA00005000</button>
                     <button class="quick-view-btn" data-id="9550">EFTA00009550</button>
                 </div>
+            </div>
+        </section>
+
+        <!-- Full Text Search Section -->
+        <section class="fulltext-search-section">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                Full Text Search
+            </h2>
+            <p class="section-description">Search across all 15,500+ documents for names, dates, locations, and keywords.</p>
+
+            <div class="fulltext-search-container">
+                <div class="fulltext-search-box">
+                    <div class="fulltext-input-wrapper">
+                        <input type="text" id="fulltextSearchInput" class="fulltext-input" placeholder="Search all documents (e.g., names, dates, locations...)">
+                        <button id="fulltextSearchBtn" class="fulltext-search-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            Search Archive
+                        </button>
+                    </div>
+                    <div class="fulltext-search-options">
+                        <label class="search-option">
+                            <input type="radio" name="searchSource" value="archive" checked>
+                            <span>Internet Archive (Searchable PDFs)</span>
+                        </label>
+                        <label class="search-option">
+                            <input type="radio" name="searchSource" value="google">
+                            <span>Google (site:justice.gov/epstein)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quick-searches">
+                    <span class="quick-search-label">Popular searches:</span>
+                    <div class="quick-search-buttons">
+                        <button class="quick-search-btn" data-query="flight log">Flight Logs</button>
+                        <button class="quick-search-btn" data-query="massage">Massage</button>
+                        <button class="quick-search-btn" data-query="little st james">Little St. James</button>
+                        <button class="quick-search-btn" data-query="palm beach">Palm Beach</button>
+                        <button class="quick-search-btn" data-query="contact book">Contact Book</button>
+                        <button class="quick-search-btn" data-query="subpoena">Subpoena</button>
+                        <button class="quick-search-btn" data-query="FBI">FBI</button>
+                        <button class="quick-search-btn" data-query="interview transcript">Interviews</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-resources">
+                <h3>Searchable Resources</h3>
+                <div class="search-resources-grid">
+                    <a href="https://archive.org/details/combined-all-epstein-files" target="_blank" rel="noopener" class="search-resource-card">
+                        <div class="search-resource-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            </svg>
+                        </div>
+                        <div class="search-resource-content">
+                            <h4>Internet Archive</h4>
+                            <p>Full-text searchable combined PDF of all datasets</p>
+                            <span class="search-resource-tag">Recommended</span>
+                        </div>
+                    </a>
+                    <a href="https://www.documentcloud.org/app?q=%2Bproject%3Aepstein-files-221595" target="_blank" rel="noopener" class="search-resource-card">
+                        <div class="search-resource-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                        </div>
+                        <div class="search-resource-content">
+                            <h4>DocumentCloud</h4>
+                            <p>OCR-indexed documents with advanced search</p>
+                            <span class="search-resource-tag">OCR Search</span>
+                        </div>
+                    </a>
+                    <a href="https://vault.fbi.gov/jeffrey-epstein" target="_blank" rel="noopener" class="search-resource-card">
+                        <div class="search-resource-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                        </div>
+                        <div class="search-resource-content">
+                            <h4>FBI Vault</h4>
+                            <p>FBI investigation records and files</p>
+                            <span class="search-resource-tag">FBI Records</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="search-tips">
+                <h3>Search Tips</h3>
+                <ul>
+                    <li><strong>In-Document Search:</strong> When viewing a PDF, use <kbd>Ctrl+F</kbd> or the search bar to find text within that document</li>
+                    <li><strong>Full Archive Search:</strong> Use the Internet Archive for searching across all combined PDFs</li>
+                    <li><strong>Name Searches:</strong> Try both full names and partial matches (e.g., "Clinton" or "Bill Clinton")</li>
+                    <li><strong>Date Formats:</strong> Search for dates in multiple formats (e.g., "March 2005" or "03/2005")</li>
+                </ul>
             </div>
         </section>
 
