@@ -74,6 +74,16 @@ const DATASETS = [
         size: '~250 MB',
         url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-7-files',
         folder: 'DataSet 7'
+    },
+    {
+        id: 8,
+        name: 'Dataset 8',
+        startId: 9701,
+        endId: 20700,
+        files: 11000,
+        size: '~5 GB',
+        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-8-files',
+        folder: 'DataSet 8'
     }
 ];
 
@@ -239,7 +249,7 @@ function performLookup() {
             lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} is in a gap between Dataset 3 and Dataset 4. This document ID may not exist in the released files.`;
         } else if (docId > 8320 && docId < 8409) {
             lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} is in a gap between Dataset 4 and Dataset 5. This document ID may not exist in the released files.`;
-        } else if (docId > 9700) {
+        } else if (docId > 20700) {
             lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} exceeds the maximum document ID in the currently released files.`;
         } else {
             lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} was not found in any dataset.`;
@@ -498,9 +508,9 @@ console.log(`
 ║  This viewer provides access to DOJ disclosure datasets      ║
 ║  released December 19, 2025 under H.R. 4405                  ║
 ║                                                              ║
-║  Total Documents: 4,500+                                     ║
-║  Datasets: 7                                                 ║
-║  Document ID Range: EFTA00000001 - EFTA00009700              ║
+║  Total Documents: 15,500+                                    ║
+║  Datasets: 8                                                 ║
+║  Document ID Range: EFTA00000001 - EFTA00020700              ║
 ║                                                              ║
 ║  Keyboard Shortcuts:                                         ║
 ║  - '/' : Focus search                                        ║

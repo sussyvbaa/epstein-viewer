@@ -721,6 +721,25 @@ body {
 .dataset-card:nth-child(5) { animation-delay: 0.25s; }
 .dataset-card:nth-child(6) { animation-delay: 0.3s; }
 .dataset-card:nth-child(7) { animation-delay: 0.35s; }
+.dataset-card:nth-child(8) { animation-delay: 0.4s; }
+
+/* Latest Dataset Badge (Dataset 8) */
+.dataset-badge-latest {
+    background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(245, 101, 101, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(245, 101, 101, 0.8); }
+}
+
+/* New filter tab style */
+.filter-tab-new {
+    background: linear-gradient(135deg, rgba(245, 101, 101, 0.2) 0%, rgba(229, 62, 62, 0.2) 100%);
+    border-color: #f56565;
+    color: #f56565;
+}
 
 /* Document Viewer Section */
 .doc-viewer-section {

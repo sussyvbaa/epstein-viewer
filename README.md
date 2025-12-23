@@ -4,7 +4,7 @@ A web-based viewer for the DOJ Epstein Files Disclosure released December 19, 20
 
 ## Overview
 
-This viewer provides organized access to the 7 official DOJ disclosure datasets containing 4,500+ documents related to the Jeffrey Epstein investigation. View PDFs and documents directly in your browser.
+This viewer provides organized access to the 8 official DOJ disclosure datasets containing 15,500+ documents related to the Jeffrey Epstein investigation. View PDFs and documents directly in your browser.
 
 ## Features
 
@@ -28,6 +28,9 @@ This viewer provides organized access to the 7 official DOJ disclosure datasets 
 | Dataset 5 | 120 | 61 MB | EFTA00008409 - EFTA00008528 |
 | Dataset 6 | ~150 | ~200 MB | EFTA00008529 - EFTA00009200 |
 | Dataset 7 | ~200 | ~250 MB | EFTA00009201 - EFTA00009700 |
+| Dataset 8 | 11,000+ | ~5 GB | EFTA00009701 - EFTA00020700 |
+
+**Dataset 8** is the largest release to date, containing court records, emails, photos, spreadsheets, audio files, hundreds of video files, FBI documents, and internal DOJ communications.
 
 ## Usage
 
