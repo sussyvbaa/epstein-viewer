@@ -1,16 +1,18 @@
 # Epstein Files Viewer
 
-A web-based viewer for the DOJ Epstein Files Disclosure released December 19, 2025, pursuant to the **Epstein Files Transparency Act (H.R. 4405)**.
+A web-based viewer for the DOJ Epstein Files Disclosure, released starting December 19, 2025, pursuant to the **Epstein Files Transparency Act (H.R. 4405)**.
 
 ## Overview
 
-This viewer provides organized access to the 8 official DOJ disclosure datasets containing 15,500+ documents related to the Jeffrey Epstein investigation. View PDFs and documents directly in your browser.
+This viewer provides organized access to all **12 official DOJ disclosure datasets** containing **2.7 million+ pages** and **1.38 million PDF documents** (194.5 GB total) related to the Jeffrey Epstein investigation. View PDFs and documents directly in your browser.
+
+**Last Updated:** February 2026 (includes January 30, 2026 release of 3.5 million pages)
 
 ## Features
 
 - **Embedded Document Viewer**: View PDFs, images, and documents directly in your browser
-- **Full Text Search**: Search across all 15,500+ documents for names, dates, locations, and keywords via Internet Archive or Google
-- **Dataset Browser**: Browse all 8 DOJ disclosure datasets with file counts, sizes, and document ID ranges
+- **Full Text Search**: Search across all 2.7M+ pages for names, dates, locations, and keywords via Internet Archive or Google
+- **Dataset Browser**: Browse all 12 DOJ disclosure datasets with file counts, sizes, and document ID ranges
 - **Document ID Lookup**: Search for any EFTA document ID to find which dataset contains it
 - **Navigation Controls**: Use arrow keys or buttons to navigate between documents
 - **Quick Search Buttons**: One-click searches for popular queries (Flight Logs, FBI, Palm Beach, etc.)
@@ -22,18 +24,24 @@ This viewer provides organized access to the 8 official DOJ disclosure datasets 
 
 ## Datasets
 
-| Dataset | Files | Size | Document ID Range |
-|---------|-------|------|-------------------|
-| Dataset 1 | 3,142 | 1.26 GB | EFTA00000001 - EFTA00003158 |
-| Dataset 2 | 574 | 629 MB | EFTA00003159 - EFTA00003857 |
-| Dataset 3 | 67 | 598 MB | EFTA00003858 - EFTA00005586 |
-| Dataset 4 | 152 | 356 MB | EFTA00005705 - EFTA00008320 |
-| Dataset 5 | 120 | 61 MB | EFTA00008409 - EFTA00008528 |
-| Dataset 6 | ~150 | ~200 MB | EFTA00008529 - EFTA00009200 |
-| Dataset 7 | ~200 | ~250 MB | EFTA00009201 - EFTA00009700 |
-| Dataset 8 | 11,000+ | ~5 GB | EFTA00009701 - EFTA00020700 |
+| Dataset | Files | Size | EFTA Range | Description |
+|---------|-------|------|------------|-------------|
+| Dataset 1 | 3,158 | 1.23 GB | 00000001 - 00003158 | FBI interviews, Palm Beach police reports |
+| Dataset 2 | 699 | 629 MB | 00003159 - 00003857 | Photos of Epstein travels, prominent figures |
+| Dataset 3 | 1,729 | 598 MB | 00003858 - 00005586 | Photo inventories from CDs, DVDs, scrapbooks |
+| Dataset 4 | 2,616 | 356 MB | 00005705 - 00008320 | Call logs, phone records, police files |
+| Dataset 5 | 120 | 61 MB | 00008409 - 00008528 | Images of hard drives, evidence boxes |
+| Dataset 6 | 470 | ~200 MB | 00008529 - 00008998 | Additional FBI materials |
+| Dataset 7 | 649 | ~250 MB | 00009016 - 00009664 | Additional documentation |
+| Dataset 8 | 29,348 | ~5 GB | 00009676 - 00039023 | Court records, emails, videos |
+| Dataset 9 | 1,223,757 | 103.6 GB | 00039025 - 01262781 | Email evidence, 2008 NPA correspondence |
+| Dataset 10 | 942,873 | 78.6 GB | 01262782 - 02205654 | 180K images, 2K videos from properties |
+| Dataset 11 | 524,610 | 25.6 GB | 02205655 - 02730264 | Flight manifests, financial records |
+| Dataset 12 | 1,519 | ~150 MB | 02730265 - 02731783 | Late productions, supplemental items |
 
-**Dataset 8** is the largest release to date, containing court records, emails, photos, spreadsheets, audio files, hundreds of video files, FBI documents, and internal DOJ communications.
+**Note:** There are gaps between some datasets (e.g., 5587-5704, 8321-8408). Files in gap ranges may exist in adjacent datasets.
+
+**Dataset 9** is the largest release, containing email correspondence including internal DOJ communications about the controversial 2008 non-prosecution agreement.
 
 ## Usage
 
@@ -50,7 +58,7 @@ Simply open `index.html` in a web browser. No build process or server required.
 ### Searching Documents
 
 **Full Text Search:**
-1. Use the "Full Text Search" section to search across all 15,500+ documents
+1. Use the "Full Text Search" section to search across all 2.7M+ pages
 2. Enter your search query (names, dates, locations, keywords)
 3. Choose your search source: Internet Archive (recommended) or Google
 4. Click "Search Archive" or press Enter
@@ -75,11 +83,12 @@ Simply open `index.html` in a web browser. No build process or server required.
 
 ## Data Sources
 
-- [DOJ Epstein Library](https://www.justice.gov/epstein) - Official DOJ homepage
+- [DOJ Epstein Library](https://www.justice.gov/epstein) - Official DOJ homepage (194.5 GB, 12 datasets)
 - [DOJ Disclosures](https://www.justice.gov/epstein/doj-disclosures) - All disclosure categories
-- [House Oversight Committee](https://oversight.house.gov/release/oversight-committee-releases-epstein-records-provided-by-the-department-of-justice/) - 33,000+ pages
+- [House Oversight Committee](https://oversight.house.gov/release/oversight-committee-releases-epstein-records-provided-by-the-department-of-justice/) - Estate documents
 - [FBI Vault](https://vault.fbi.gov/jeffrey-epstein) - FBI records
 - [Internet Archive](https://archive.org/details/combined-all-epstein-files) - Complete searchable archive
+- [Epstein Research Data](https://github.com/rhowardstone/Epstein-research-data) - Forensic analysis, EFTA mapping
 - [H.R. 4405](https://www.congress.gov/bill/119th-congress/house-bill/4405/text) - Epstein Files Transparency Act
 
 ## Document Categories

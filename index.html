@@ -94,9 +94,10 @@
                     <line x1="12" y1="8" x2="12" y2="12"></line>
                     <line x1="12" y1="16" x2="12.01" y2="16"></line>
                 </svg>
-                <h3>Unable to load document</h3>
-                <p>The document may not exist or the DOJ server may be blocking embedded access.</p>
-                <a id="viewerErrorLink" href="#" target="_blank" rel="noopener" class="viewer-error-link">Try opening directly on DOJ website →</a>
+                <h3>Document Not Available</h3>
+                <p>This document ID may not exist, may have been removed, or may be in a format that cannot be embedded (video, audio, etc.).</p>
+                <p class="viewer-error-note">Note: Not all document IDs have files. The DOJ releases have gaps in the ID sequence.</p>
+                <a id="viewerErrorLink" href="#" target="_blank" rel="noopener" class="viewer-error-link">Browse this dataset on DOJ website →</a>
             </div>
         </div>
     </div>
@@ -112,27 +113,27 @@
                 </svg>
             </div>
             <div class="info-text">
-                <p>These files were released by the U.S. Department of Justice on <strong>December 19, 2025</strong>, pursuant to the <strong>Epstein Files Transparency Act (H.R. 4405)</strong>. This viewer provides organized access to the official DOJ disclosure datasets.</p>
+                <p>These files were released by the U.S. Department of Justice starting <strong>December 19, 2025</strong>, pursuant to the <strong>Epstein Files Transparency Act (H.R. 4405)</strong>. As of January 30, 2026, the DOJ has published <strong>3.5 million pages</strong> in compliance with the Act.</p>
             </div>
         </section>
 
         <!-- Stats Overview -->
         <section class="stats-section">
             <div class="stat-card">
-                <div class="stat-number">15,500+</div>
-                <div class="stat-label">Total Documents</div>
+                <div class="stat-number">2.7M+</div>
+                <div class="stat-label">Total Pages</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">8</div>
+                <div class="stat-number">12</div>
                 <div class="stat-label">Data Sets</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">~8.5 GB</div>
+                <div class="stat-number">194.5 GB</div>
                 <div class="stat-label">Total Size</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">20,700+</div>
-                <div class="stat-label">Document IDs</div>
+                <div class="stat-number">1.38M</div>
+                <div class="stat-label">PDF Documents</div>
             </div>
         </section>
 
@@ -154,11 +155,12 @@
                 </div>
                 <div class="quick-view-buttons">
                     <span class="quick-view-label">Quick samples:</span>
-                    <button class="quick-view-btn" data-id="1">EFTA00000001</button>
-                    <button class="quick-view-btn" data-id="100">EFTA00000100</button>
-                    <button class="quick-view-btn" data-id="1000">EFTA00001000</button>
-                    <button class="quick-view-btn" data-id="5000">EFTA00005000</button>
-                    <button class="quick-view-btn" data-id="9550">EFTA00009550</button>
+                    <button class="quick-view-btn" data-id="468">EFTA00000468</button>
+                    <button class="quick-view-btn" data-id="3170">EFTA00003170</button>
+                    <button class="quick-view-btn" data-id="3256">EFTA00003256</button>
+                    <button class="quick-view-btn" data-id="5578">EFTA00005578</button>
+                    <button class="quick-view-btn" data-id="6109">EFTA00006109</button>
+                    <button class="quick-view-btn" data-id="8585">EFTA00008585</button>
                 </div>
             </div>
         </section>
@@ -281,14 +283,18 @@
             </div>
             <div class="filter-tabs">
                 <button class="filter-tab active" data-filter="all">All Datasets</button>
-                <button class="filter-tab" data-filter="1">Dataset 1</button>
-                <button class="filter-tab" data-filter="2">Dataset 2</button>
-                <button class="filter-tab" data-filter="3">Dataset 3</button>
-                <button class="filter-tab" data-filter="4">Dataset 4</button>
-                <button class="filter-tab" data-filter="5">Dataset 5</button>
-                <button class="filter-tab" data-filter="6">Dataset 6</button>
-                <button class="filter-tab" data-filter="7">Dataset 7</button>
-                <button class="filter-tab filter-tab-new" data-filter="8">Dataset 8</button>
+                <button class="filter-tab" data-filter="1">DS 1</button>
+                <button class="filter-tab" data-filter="2">DS 2</button>
+                <button class="filter-tab" data-filter="3">DS 3</button>
+                <button class="filter-tab" data-filter="4">DS 4</button>
+                <button class="filter-tab" data-filter="5">DS 5</button>
+                <button class="filter-tab" data-filter="6">DS 6</button>
+                <button class="filter-tab" data-filter="7">DS 7</button>
+                <button class="filter-tab" data-filter="8">DS 8</button>
+                <button class="filter-tab filter-tab-new" data-filter="9">DS 9</button>
+                <button class="filter-tab filter-tab-new" data-filter="10">DS 10</button>
+                <button class="filter-tab filter-tab-new" data-filter="11">DS 11</button>
+                <button class="filter-tab filter-tab-new" data-filter="12">DS 12</button>
             </div>
         </section>
 
@@ -561,7 +567,7 @@
                                 <line x1="3" y1="9" x2="21" y2="9"></line>
                                 <line x1="9" y1="21" x2="9" y2="9"></line>
                             </svg>
-                            <span>EFTA00008529 - EFTA00009200</span>
+                            <span>EFTA00008529 - EFTA00008998</span>
                         </div>
                     </div>
                     <p class="dataset-description">Part of the rolling release of additional materials following the initial December 19th disclosure.</p>
@@ -570,7 +576,7 @@
                         <span class="tag">December 2025</span>
                     </div>
                     <div class="dataset-actions">
-                        <button class="dataset-view-btn" data-start="8529" data-end="9200">
+                        <button class="dataset-view-btn" data-start="8529" data-end="8998">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
@@ -609,7 +615,7 @@
                                 <line x1="3" y1="9" x2="21" y2="9"></line>
                                 <line x1="9" y1="21" x2="9" y2="9"></line>
                             </svg>
-                            <span>EFTA00009201 - EFTA00009700</span>
+                            <span>EFTA00009016 - EFTA00009664</span>
                         </div>
                     </div>
                     <p class="dataset-description">Latest batch of released materials including additional documentation and evidence files.</p>
@@ -618,7 +624,7 @@
                         <span class="tag">December 2025</span>
                     </div>
                     <div class="dataset-actions">
-                        <button class="dataset-view-btn" data-start="9201" data-end="9700">
+                        <button class="dataset-view-btn" data-start="9016" data-end="9664">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
@@ -639,17 +645,17 @@
                 <!-- Dataset 8 -->
                 <article class="dataset-card" data-dataset="8">
                     <div class="dataset-header">
-                        <span class="dataset-badge dataset-badge-latest">Dataset 8</span>
+                        <span class="dataset-badge">Dataset 8</span>
                         <span class="dataset-size">~5 GB</span>
                     </div>
-                    <h3 class="dataset-title">Largest Release - Videos & FBI Files</h3>
+                    <h3 class="dataset-title">Court Records, Emails & Videos</h3>
                     <div class="dataset-meta">
                         <div class="meta-item">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                 <polyline points="14 2 14 8 20 8"></polyline>
                             </svg>
-                            <span>11,000+ files</span>
+                            <span>29,348 files</span>
                         </div>
                         <div class="meta-item">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -657,18 +663,17 @@
                                 <line x1="3" y1="9" x2="21" y2="9"></line>
                                 <line x1="9" y1="21" x2="9" y2="9"></line>
                             </svg>
-                            <span>EFTA00009701 - EFTA00020700</span>
+                            <span>EFTA00009676 - EFTA00039023</span>
                         </div>
                     </div>
-                    <p class="dataset-description">The largest release to date. Includes court records, emails, photos, spreadsheets, audio files, hundreds of video files, FBI documents, and internal DOJ communications.</p>
+                    <p class="dataset-description">Court records, emails, videos, FBI/DOJ documents, and internal communications.</p>
                     <div class="dataset-tags">
                         <span class="tag">Videos</span>
                         <span class="tag">FBI Documents</span>
                         <span class="tag">Emails</span>
-                        <span class="tag">Audio</span>
                     </div>
                     <div class="dataset-actions">
-                        <button class="dataset-view-btn" data-start="9701" data-end="20700">
+                        <button class="dataset-view-btn" data-start="9676" data-end="39023">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
@@ -676,6 +681,201 @@
                             Browse Files
                         </button>
                         <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-8-files" target="_blank" rel="noopener" class="dataset-link">
+                            View on DOJ
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Dataset 9 -->
+                <article class="dataset-card" data-dataset="9">
+                    <div class="dataset-header">
+                        <span class="dataset-badge dataset-badge-latest">Dataset 9</span>
+                        <span class="dataset-size">103.6 GB</span>
+                    </div>
+                    <h3 class="dataset-title">Email Evidence & DOJ Correspondence</h3>
+                    <div class="dataset-meta">
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                            <span>1,223,757 files</span>
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            <span>EFTA00039025 - EFTA01262781</span>
+                        </div>
+                    </div>
+                    <p class="dataset-description">Private correspondence between Epstein and high-profile individuals. Internal DOJ correspondence regarding the 2008 non-prosecution agreement.</p>
+                    <div class="dataset-tags">
+                        <span class="tag">Emails</span>
+                        <span class="tag">2008 NPA</span>
+                        <span class="tag">DOJ Internal</span>
+                    </div>
+                    <div class="dataset-actions">
+                        <button class="dataset-view-btn" data-start="39025" data-end="1262781">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            Browse Files
+                        </button>
+                        <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-9-files" target="_blank" rel="noopener" class="dataset-link">
+                            View on DOJ
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Dataset 10 -->
+                <article class="dataset-card" data-dataset="10">
+                    <div class="dataset-header">
+                        <span class="dataset-badge dataset-badge-latest">Dataset 10</span>
+                        <span class="dataset-size">78.6 GB</span>
+                    </div>
+                    <h3 class="dataset-title">Images & Videos from Properties</h3>
+                    <div class="dataset-meta">
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                            <span>942,873 files</span>
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            <span>EFTA01262782 - EFTA02205654</span>
+                        </div>
+                    </div>
+                    <p class="dataset-description">180,000+ images and 2,000+ videos seized from Epstein's properties. Materials are heavily redacted to protect potential victims.</p>
+                    <div class="dataset-tags">
+                        <span class="tag">180K Images</span>
+                        <span class="tag">2K Videos</span>
+                        <span class="tag">Property Evidence</span>
+                    </div>
+                    <div class="dataset-actions">
+                        <button class="dataset-view-btn" data-start="1262782" data-end="2205654">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            Browse Files
+                        </button>
+                        <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-10-files" target="_blank" rel="noopener" class="dataset-link">
+                            View on DOJ
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Dataset 11 -->
+                <article class="dataset-card" data-dataset="11">
+                    <div class="dataset-header">
+                        <span class="dataset-badge dataset-badge-latest">Dataset 11</span>
+                        <span class="dataset-size">25.6 GB</span>
+                    </div>
+                    <h3 class="dataset-title">Financial Records & Flight Manifests</h3>
+                    <div class="dataset-meta">
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                            <span>524,610 files</span>
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            <span>EFTA02205655 - EFTA02730264</span>
+                        </div>
+                    </div>
+                    <p class="dataset-description">Financial ledgers, flight manifests to Epstein's island in the U.S. Virgin Islands, and property seizure records.</p>
+                    <div class="dataset-tags">
+                        <span class="tag">Flight Logs</span>
+                        <span class="tag">Financial Records</span>
+                        <span class="tag">Seizure Records</span>
+                    </div>
+                    <div class="dataset-actions">
+                        <button class="dataset-view-btn" data-start="2205655" data-end="2730264">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            Browse Files
+                        </button>
+                        <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-11-files" target="_blank" rel="noopener" class="dataset-link">
+                            View on DOJ
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Dataset 12 -->
+                <article class="dataset-card" data-dataset="12">
+                    <div class="dataset-header">
+                        <span class="dataset-badge dataset-badge-latest">Dataset 12</span>
+                        <span class="dataset-size">~150 MB</span>
+                    </div>
+                    <h3 class="dataset-title">Late Productions & Supplements</h3>
+                    <div class="dataset-meta">
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                            <span>1,519 files</span>
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            <span>EFTA02730265 - EFTA02731783</span>
+                        </div>
+                    </div>
+                    <p class="dataset-description">Late productions and supplemental items requiring more detailed legal review.</p>
+                    <div class="dataset-tags">
+                        <span class="tag">Supplemental</span>
+                        <span class="tag">Late Production</span>
+                    </div>
+                    <div class="dataset-actions">
+                        <button class="dataset-view-btn" data-start="2730265" data-end="2731783">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            Browse Files
+                        </button>
+                        <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-12-files" target="_blank" rel="noopener" class="dataset-link">
                             View on DOJ
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
