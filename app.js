@@ -1,49 +1,56 @@
 // Epstein Files Viewer - JavaScript Application
+// Updated: February 2026 - All 12 datasets with exact EFTA ranges
 
 // DOJ Base URL for files
 const DOJ_BASE_URL = 'https://www.justice.gov/epstein/files';
 
-// Dataset ranges for document ID lookup
+// Dataset ranges for document ID lookup (exact ranges from forensic analysis)
+// Source: https://github.com/rhowardstone/Epstein-research-data
+// Total: 194.5 GB, 1,380,937 PDFs, 2,731,785 pages, 3.5 million responsive pages
 const DATASETS = [
     {
         id: 1,
         name: 'Dataset 1',
         startId: 1,
         endId: 3158,
-        files: 3142,
-        size: '1.26 GB',
+        files: 3158,
+        size: '1.23 GB',
         url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-1-files',
-        folder: 'DataSet 1'
+        folder: 'DataSet 1',
+        description: 'FBI interview summaries and Palm Beach police reports (2005-2008)'
     },
     {
         id: 2,
         name: 'Dataset 2',
         startId: 3159,
         endId: 3857,
-        files: 574,
+        files: 699,
         size: '629 MB',
         url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-2-files',
-        folder: 'DataSet 2'
+        folder: 'DataSet 2',
+        description: 'Photos of Epstein travels and prominent figures'
     },
     {
         id: 3,
         name: 'Dataset 3',
         startId: 3858,
         endId: 5586,
-        files: 67,
+        files: 1729,
         size: '598 MB',
         url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-3-files',
-        folder: 'DataSet 3'
+        folder: 'DataSet 3',
+        description: 'Photo inventories from CDs, DVDs, and scrapbooks'
     },
     {
         id: 4,
         name: 'Dataset 4',
         startId: 5705,
         endId: 8320,
-        files: 152,
+        files: 2616,
         size: '356 MB',
         url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-4-files',
-        folder: 'DataSet 4'
+        folder: 'DataSet 4',
+        description: 'Call logs, phone records, handwritten notes, police files'
     },
     {
         id: 5,
@@ -53,38 +60,94 @@ const DATASETS = [
         files: 120,
         size: '61 MB',
         url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-5-files',
-        folder: 'DataSet 5'
+        folder: 'DataSet 5',
+        description: 'Images of hard drives, folders, and boxes from investigators'
     },
     {
         id: 6,
         name: 'Dataset 6',
         startId: 8529,
-        endId: 9200,
-        files: 150,
+        endId: 8998,
+        files: 470,
         size: '~200 MB',
         url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-6-files',
-        folder: 'DataSet 6'
+        folder: 'DataSet 6',
+        description: 'Rolling release - additional FBI materials'
     },
     {
         id: 7,
         name: 'Dataset 7',
-        startId: 9201,
-        endId: 9700,
-        files: 200,
+        startId: 9016,
+        endId: 9664,
+        files: 649,
         size: '~250 MB',
         url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-7-files',
-        folder: 'DataSet 7'
+        folder: 'DataSet 7',
+        description: 'Rolling release - additional documentation'
     },
     {
         id: 8,
         name: 'Dataset 8',
-        startId: 9701,
-        endId: 20700,
-        files: 11000,
+        startId: 9676,
+        endId: 39023,
+        files: 29348,
         size: '~5 GB',
         url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-8-files',
-        folder: 'DataSet 8'
+        folder: 'DataSet 8',
+        description: 'Court records, emails, videos, FBI/DOJ documents'
+    },
+    {
+        id: 9,
+        name: 'Dataset 9',
+        startId: 39025,
+        endId: 1262781,
+        files: 1223757,
+        size: '103.6 GB',
+        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-9-files',
+        folder: 'DataSet 9',
+        description: 'Email evidence, DOJ correspondence on 2008 non-prosecution agreement'
+    },
+    {
+        id: 10,
+        name: 'Dataset 10',
+        startId: 1262782,
+        endId: 2205654,
+        files: 942873,
+        size: '78.6 GB',
+        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-10-files',
+        folder: 'DataSet 10',
+        description: '180,000+ images and 2,000+ videos from Epstein properties'
+    },
+    {
+        id: 11,
+        name: 'Dataset 11',
+        startId: 2205655,
+        endId: 2730264,
+        files: 524610,
+        size: '25.6 GB',
+        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-11-files',
+        folder: 'DataSet 11',
+        description: 'Financial ledgers, flight manifests, property seizure records'
+    },
+    {
+        id: 12,
+        name: 'Dataset 12',
+        startId: 2730265,
+        endId: 2731783,
+        files: 1519,
+        size: '~150 MB',
+        url: 'https://www.justice.gov/epstein/doj-disclosures/data-set-12-files',
+        folder: 'DataSet 12',
+        description: 'Late productions and supplemental items'
     }
+];
+
+// Gap ranges where files exist in adjacent datasets
+const GAP_RANGES = [
+    { start: 5587, end: 5704, tryDatasets: [3, 4] },
+    { start: 8321, end: 8408, tryDatasets: [4, 5] },
+    { start: 8999, end: 9015, tryDatasets: [6, 7] },
+    { start: 9665, end: 9675, tryDatasets: [7, 8] }
 ];
 
 // Current document being viewed
@@ -245,12 +308,11 @@ function performLookup() {
         lookupResult.classList.add('error');
 
         // Check if it's in a gap between datasets
-        if (docId > 5586 && docId < 5705) {
-            lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} is in a gap between Dataset 3 and Dataset 4. This document ID may not exist in the released files.`;
-        } else if (docId > 8320 && docId < 8409) {
-            lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} is in a gap between Dataset 4 and Dataset 5. This document ID may not exist in the released files.`;
-        } else if (docId > 20700) {
-            lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} exceeds the maximum document ID in the currently released files.`;
+        const gapInfo = GAP_RANGES.find(g => docId >= g.start && docId <= g.end);
+        if (gapInfo) {
+            lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} is in a gap range. Try checking Datasets ${gapInfo.tryDatasets.join(' or ')} - <a href="#" onclick="openDocumentViewer(${docId}); return false;">Try viewing anyway</a>`;
+        } else if (docId > 2731783) {
+            lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} exceeds the maximum document ID (EFTA02731783) in the released files.`;
         } else {
             lookupResult.innerHTML = `Document EFTA${String(docId).padStart(8, '0')} was not found in any dataset.`;
         }
@@ -274,11 +336,21 @@ function parseDocumentId(input) {
 }
 
 function findDatasetForDocument(docId) {
+    // First check standard dataset ranges
     for (const dataset of DATASETS) {
         if (docId >= dataset.startId && docId <= dataset.endId) {
             return dataset;
         }
     }
+
+    // Check gap ranges - files may exist in adjacent datasets
+    for (const gap of GAP_RANGES) {
+        if (docId >= gap.start && docId <= gap.end) {
+            // Return the first adjacent dataset to try
+            return DATASETS.find(d => d.id === gap.tryDatasets[0]);
+        }
+    }
+
     return null;
 }
 
